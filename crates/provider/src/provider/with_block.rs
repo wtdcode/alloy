@@ -123,6 +123,7 @@ where
             Poll::Ready(value) => Poll::Ready(value),
             Poll::Pending => {
                 *this.state = States::Running(fut);
+                cx.waker().wake_by_ref();
                 Poll::Pending
             }
         }
