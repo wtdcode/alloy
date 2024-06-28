@@ -96,7 +96,6 @@ where
                         }
                     };
                     self.set(Self::AwaitingResponse { fut });
-                    cx.waker().wake_by_ref();
                 }
                 CallStateProj::AwaitingResponse { fut } => {
                     let res = match task::ready!(fut.poll(cx)) {
